@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Скачать Ekzamen.docx</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 16px 35px;
+            font-size: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(52, 152, 219, 0.6);
+        }
+        .info {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+        .status {
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .success {
+            color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+        .error {
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Скачать Ekzamen.docx</h1>
+        <p>Файл будет автоматически загружен через несколько секунд</p>
+        
+        <button class="btn" id="downloadBtn">Скачать сейчас</button>
+        
+        <div id="statusArea">
+            <div id="success" class="status success" style="display:none;">
+                ✔ Файл успешно скачан! Вы можете закрыть эту вкладку.
+            </div>
+            <div id="error" class="status error" style="display:none;">
+                ❌ Ошибка скачивания. Пожалуйста, нажмите кнопку выше.
+            </div>
+        </div>
+        
+        <p class="info">
+            Эта страница не сохраняется в истории вашего браузера.<br>
+            После скачивания закройте вкладку.
+        </p>
+    </div>
+
+    <script>
+        function downloadFile() {
+            try {
+                // Содержимое вашего файла (замените на реальное)
+                const content = `[ВСТАВЬТЕ СОДЕРЖИМОЕ ФАЙЛА ЗДЕСЬ]`;
+                
+                // Создаем DOCX файл
+                const blob = new Blob([content], { 
+                    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' 
+                });
+                
+                // Создаем ссылку для скачивания
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'Ekzamen.docx';
+                link.style.display = 'none';
+                
+                // Добавляем на страницу и эмулируем клик
+                document.body.appendChild(link);
+                link.click();
+                
+                // Убираем ссылку через 5 секунд
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(link.href);
+                    document.getElementById('success').style.display = 'block';
+                }, 500);
+                
+            } catch (e) {
+                console.error('Ошибка:', e);
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        // Автоматическое скачивание через 1 секунду
+        setTimeout(downloadFile, 1000);
+        
+        // Ручное скачивание по кнопке
+        document.getElementById('downloadBtn').addEventListener('click', downloadFile);
+        
+        // Предотвращаем сохранение в истории
+        window.addEventListener('load', function() {
+            if(window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        });
+    </script>
+</body>
+</html>
